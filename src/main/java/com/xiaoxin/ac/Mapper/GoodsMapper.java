@@ -61,4 +61,14 @@ public interface GoodsMapper {
     @Options(useGeneratedKeys=true,keyProperty="shopID")
     void addMainShop(Goods goods);
 
+    @Select("select shop.shopID,shop.shopName,shop.url,sell.left,sell.price from (shop natural join sell) ")
+    List<sellShop> getAllShops();
+
+    @Delete("DELETE sell,buy,details,shop FROM \n" +
+            "(( (shop LEFT JOIN sell\n" +
+            "ON shop.`shopID` = sell.`shopID` )\n" +
+            "LEFT JOIN details ON shop.`shopID` = details.`shopID`)\n" +
+            "LEFT JOIN buy ON shop.`shopID` = buy.`shopID`)\n" +
+            "WHERE shop.`shopID` = #{shopID}")
+    void deleteShop(int shopID);
 }

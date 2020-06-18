@@ -97,4 +97,16 @@ public class ShopService {
         }
             return ImgUrl+type+"/"+name;
     }
+
+    public List<sellShop> getAllShops() {
+        return goodsMapper.getAllShops();
+    }
+
+    public void deleteShop(int shopID) {
+        try {
+            goodsMapper.deleteShop(shopID);
+        }catch (Exception e){
+            throw new CustomerException(CustomerError.FAILED_DELETE);
+        }
+    }
 }

@@ -10,6 +10,7 @@ public enum CustomerError implements ICustomerError {
     FAILED_CHARGE(406,"充值失败") ,
     SAVE_ERROR(408,"图片保存错误"),
     SHOP_NOT_EXIST(409,"商品还未上架"),
+    FAILED_DELETE(410,"商品还未上架"),
     DATABASE_ERROR(407,"数据库操作错误");
     private Integer code;
     private String message;
